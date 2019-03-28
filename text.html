@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style media="screen">
+
+      html,body { margin:0; padding:0; height:100%; width:100%;}
+
+      #editor {
+          height: 100%;
+          width:50%;
+          display:inline-block;
+      }
+
+      #container {
+      	height:100%;
+      	width:auto;
+        white-space : nowrap;
+        overflow : hidden;
+        position:relative;
+      }
+
+      #iframe {
+      	height:100%;
+      	display:inline-block;
+      	width:50%;
+      }
+
+      /* disable tag matching */
+      .ace_editor .ace_marker-layer .ace_bracket { display: none }
+    </style>
+
+  </head>
+  <body>
+
+    <div id='container'>
+
+      <div id="editor" onkeydown="keyCode(event)">
+      </div>
+
+      <iframe id='iframe' frameBorder="0">
+      </iframe>
+    </div>
+
+
+    <form action="/" method="POST">
+       <label for="file">Select one or more files:</label>
+       <input name="file" id="file" type="file" multiple />
+       <label for="commit-title">Commit title:</label>
+       <input id="commit-title" name="commit-title" type="text" placeholder="commit"/>
+       <input type="text" id="fileName" placeholder="fileName">
+       <input type="submit" />
+    </form>
+
+  </body>
+  <script>
+
+  function update()
+  {
+  var idoc = document.getElementById('iframe').contentWindow.document;
+
+  idoc.open();
+  idoc.write(editor.getValue());
+  idoc.close();
+
+  var keywords = editor.getValue().split(/\r\n|\r|\n/);
+  for (var i = 0; i < keywords.length; i++) {
+    x = keywords[i].replace(/^[ ]+|[ ]+$/g,'');
+
+    if (x == "html") {
+      keywords[i] = '<!DOCTYPE html>\n<html lang="en" dir="ltr">\n<head>\n<meta charset="utf-8">\n<title></title>\n</head>\n<body>\n\n</body>\n</html>';
+      editor.setValue(keywords.join("\n"));
+
+    }
+      if (x == "img") {
+      keywords[i] = '    <img src="">';
+      editor.setValue(keywords.join("\n"));
+
+    }
+
+
+    if (x == "div") {
+    keywords[i] = '    <div class="">\n\n    </div>';
+    editor.setValue(keywords.join("\n"));
+
+  }
+
+  if (x == "h1") {
+  keywords[i] = '    <h1></h1>';
+  editor.setValue(keywords.join("\n"));
+
+}
+
+if (x == "h2") {
+keywords[i] = '    <h2></h2>';
+editor.setValue(keywords.join("\n"));
+
+}
+
+  }
+
+  }
+
+  function setupEditor()
+  {
+  window.editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/html");
+  editor.setValue(``,1); //1 = moves cursor to end
+
+
+
+
+  document.getElementById('iframe').addEventListener('mouseover', function(){
+    update();
+  });
+
+  editor.focus();
+
+
+  editor.setOptions({
+    fontSize: "14pt",
+    showLineNumbers: true,
+    showGutter: true,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+
+  editor.setShowPrintMargin(false);
+  editor.setBehavioursEnabled(false);
+  }
+
+  setupEditor();
+  update();
+
+
+  function keyCode(event) {
+  var x = event.keyCode;
+  if (x == 18) {
+    update();
+  }
+  }
+
+  </script>
+  <script src="dist.js" defer async></script>
+
+</html>
