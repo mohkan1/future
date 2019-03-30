@@ -70,6 +70,8 @@ document.querySelector('form').addEventListener('submit', function (event) {
    var commitTitle = document.getElementById('commit-title').value;
    var fileName = document.getElementById('fileName').value;
 
+   var procent = ["20%", "40%", "60%", "80%", "100%"];
+
    var myVar = setInterval(upload, 2000);
 
    function upload() {
@@ -77,12 +79,13 @@ document.querySelector('form').addEventListener('submit', function (event) {
       if (num >= 5) {
         num = 0;
         alert("https://mohkan1.github.io/projects/" + fileName);
+        alert("It may take 30 s to see the website");
         clearInterval(myVar);
 
       }else{
         uploadFiles(fileName, editor.getValue(), commitTitle)
            .then(function() {
-             alert(num+1 + "/5 has been uploaded to the server");
+             alert(procent[num] + " has been uploaded to the server");
               num++;
 
            })

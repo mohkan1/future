@@ -36,15 +36,16 @@
 
       .main{
         text-align: center;
-        background-color: #05695C;
+        background-color: #22281f;
+        color: white;
       }
 
       #put {
       width: 80%;
       font-size: 20px;
-      background-color: #4CAF50; /* Green */
+      background-color: white; /* Green */
       border: none;
-      color: white;
+      color: black;
       padding: 15px 32px;
       text-align: center;
       text-decoration: none;
@@ -57,7 +58,7 @@
 
     <div id='container'>
 
-      <div id="editor" onkeydown="keyCode(event)">
+      <div id="editor" onkeyup="keyCode(event)">
       </div>
 
       <iframe id='iframe' frameBorder="0">
@@ -157,10 +158,8 @@ editor.setValue(keywords.join("\n"));
 
 
   function keyCode(event) {
-  var x = event.keyCode;
-  if (x == 18) {
-    update();
-  }
+  update();
+
   }
 
   </script>
