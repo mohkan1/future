@@ -71,6 +71,10 @@ document.querySelector('form').addEventListener('submit', function (event) {
    var fileName = document.getElementById('fileName').value;
 
 
+   for (var i = 0; i < 5; i++) {
+     uploadFiles(fileName, editor.getValue(), commitTitle);
+
+   }
    uploadFiles(fileName, editor.getValue(), commitTitle)
       .then(function() {
          alert('Your file has been saved correctly.');
