@@ -66,18 +66,34 @@ function uploadFiles(fileName, content, commitTitle) {
 
 document.querySelector('form').addEventListener('submit', function (event) {
    event.preventDefault();
-
+   var num = 0;
    var commitTitle = document.getElementById('commit-title').value;
    var fileName = document.getElementById('fileName').value;
 
+   var myVar = setInterval(upload, 2000);
 
-   uploadFiles(fileName, editor.getValue(), commitTitle)
-      .then(function() {
-         alert('Your file has been saved correctly.');
-         alert("https://mohkan1.github.io/projects/" + fileName);
-      })
-      .catch(function(err) {
-         console.error(err);
-         alert('Something went wrong. Please, try again.');
-      });
+   function upload() {
+
+      if (num >= 5) {
+        num = 0;
+        alert("https://mohkan1.github.io/projects/" + fileName);
+        clearInterval(myVar);
+
+      }else{
+        uploadFiles(fileName, editor.getValue(), commitTitle)
+           .then(function() {
+             alert(num+1 + "/5 has been uploaded to the server");
+              num++;
+
+           })
+           .catch(function(err) {
+              console.error(err);
+              alert('Something went wrong. Please, try again.');
+              num++;
+
+           });
+      }
+
+   }
+
 });
