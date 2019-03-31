@@ -5,7 +5,8 @@
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css">
+
 
     <style media="screen">
 
@@ -108,6 +109,19 @@
 
   }
 
+
+  if (x == "script") {
+  keywords[i] = '    <script>\n\n    </script>';
+  editor.setValue(keywords.join("\n"));
+
+}
+
+if (x == "p") {
+keywords[i] = '    <p>\n\n    </p>';
+editor.setValue(keywords.join("\n"));
+
+}
+
   if (x == "h1") {
   keywords[i] = '    <h1></h1>';
   editor.setValue(keywords.join("\n"));
@@ -116,6 +130,33 @@
 
 if (x == "h2") {
 keywords[i] = '    <h2></h2>';
+editor.setValue(keywords.join("\n"));
+
+}
+
+if (x == "h3") {
+keywords[i] = '    <h3></h3>';
+editor.setValue(keywords.join("\n"));
+
+}
+
+
+if (x == "h4") {
+keywords[i] = '    <h4></h4>';
+editor.setValue(keywords.join("\n"));
+
+}
+
+
+if (x == "h5") {
+keywords[i] = '    <h5></h5>';
+editor.setValue(keywords.join("\n"));
+
+}
+
+
+if (x == "h6") {
+keywords[i] = '    <h6></h6>';
 editor.setValue(keywords.join("\n"));
 
 }
