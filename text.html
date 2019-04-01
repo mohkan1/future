@@ -16,6 +16,9 @@
           height: 100%;
           width:50%;
           display:inline-block;
+          resize: both;
+          overflow: auto;
+
       }
 
       #container {
@@ -30,6 +33,9 @@
       	height:100%;
       	display:inline-block;
       	width:50%;
+        resize: both;
+        overflow: auto;
+
       }
 
       /* disable tag matching */
@@ -109,57 +115,6 @@
 
   }
 
-
-  if (x == "script") {
-  keywords[i] = '    <script>\n\n    </script>';
-  editor.setValue(keywords.join("\n"));
-
-}
-
-if (x == "p") {
-keywords[i] = '    <p>\n\n    </p>';
-editor.setValue(keywords.join("\n"));
-
-}
-
-  if (x == "h1") {
-  keywords[i] = '    <h1></h1>';
-  editor.setValue(keywords.join("\n"));
-
-}
-
-if (x == "h2") {
-keywords[i] = '    <h2></h2>';
-editor.setValue(keywords.join("\n"));
-
-}
-
-if (x == "h3") {
-keywords[i] = '    <h3></h3>';
-editor.setValue(keywords.join("\n"));
-
-}
-
-
-if (x == "h4") {
-keywords[i] = '    <h4></h4>';
-editor.setValue(keywords.join("\n"));
-
-}
-
-
-if (x == "h5") {
-keywords[i] = '    <h5></h5>';
-editor.setValue(keywords.join("\n"));
-
-}
-
-
-if (x == "h6") {
-keywords[i] = '    <h6></h6>';
-editor.setValue(keywords.join("\n"));
-
-}
 
   }
 

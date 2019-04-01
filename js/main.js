@@ -68,7 +68,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
    event.preventDefault();
    var num = 0;
    var commitTitle = document.getElementById('commit-title').value;
-   var fileName = document.getElementById('fileName').value;
+   var fileName = "hunter/" + document.getElementById('fileName').value;
 
    var procent = ["20%", "40%", "60%", "80%", "100%"];
 
