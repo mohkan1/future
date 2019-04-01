@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
 
 
@@ -14,29 +17,32 @@
 
       #editor {
           height: 100%;
+          width:100%;
+          display:inline-block;
+
+      }
+      #father {
+          height: 100%;
           width:50%;
           display:inline-block;
-          resize: both;
-          overflow: auto;
 
       }
 
+
       #container {
       	height:100%;
-      	width:auto;
+      	width:100%;
         white-space : nowrap;
-        overflow : hidden;
         position:relative;
       }
 
       #iframe {
       	height:100%;
       	display:inline-block;
-      	width:50%;
-        resize: both;
-        overflow: auto;
+      	width:50%;;
 
       }
+
 
       /* disable tag matching */
       .ace_editor .ace_marker-layer .ace_bracket { display: none }
@@ -45,6 +51,7 @@
         text-align: center;
         background-color: #22281f;
         color: white;
+        margin-top: 10px;
       }
 
       #put {
@@ -58,6 +65,11 @@
       text-decoration: none;
       display: inline-block;
     }
+
+    #put:hover{
+      background-color: black;
+      color:white;
+    }
     </style>
 
   </head>
@@ -65,8 +77,11 @@
 
     <div id='container'>
 
-      <div id="editor" onkeyup="keyCode(event)">
+      <div id="father">
+        <div id="editor" onkeyup="keyCode(event)">
+        </div>
       </div>
+
 
       <iframe id='iframe' frameBorder="0">
       </iframe>
@@ -82,8 +97,10 @@
       </form>
     </div>
 
+
   </body>
   <script>
+
 
   function update()
   {
@@ -157,6 +174,13 @@
   update();
 
   }
+
+  $( "#father" ).resizable({
+    handles: 'e'
+  });
+
+
+
 
   </script>
   <script src="dist.js" defer async></script>
